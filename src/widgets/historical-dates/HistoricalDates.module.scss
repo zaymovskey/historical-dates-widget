@@ -1,0 +1,141 @@
+.root {
+  position: relative;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 40px;
+}
+
+.axes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 50%;
+    width: 1px;
+    background: rgba(66, 86, 122, 0.12);
+    transform: translateX(-0.5px);
+  }
+}
+
+.header,
+.stage,
+.events {
+  position: relative;
+  z-index: 1;
+}
+
+.stage {
+  position: relative;
+  height: 520px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: -40px;
+    right: -40px;
+    top: 50%;
+    height: 1px;
+    background: rgba(66, 86, 122, 0.12);
+    transform: translateY(-0.5px);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+.years {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 120px;
+  z-index: 2;
+}
+
+.circleWrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.circle {
+  position: relative;
+  width: 530px;
+  height: 530px;
+  border-radius: 50%;
+  border: 1px solid rgba(66, 86, 122, 0.2);
+
+  --radius: 265px;
+  --dotSize: 56px;
+  --labelGap: 14px;
+}
+
+.anchor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+
+  transform: translate(-50%, -50%) rotate(var(--angle))
+    translateY(calc(-1 * var(--radius)));
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #42567a;
+  transform: translate(-50%, -50%);
+}
+
+.activeDot {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: var(--dotSize);
+  height: var(--dotSize);
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid rgba(66, 86, 122, 0.5);
+
+  display: grid;
+  place-items: center;
+
+  transform: translate(-50%, -50%) rotate(calc(-1 * var(--angle)));
+}
+
+.activeIndex {
+  font-size: 18px;
+  font-weight: 600;
+  color: #42567a;
+}
+
+.labelUnrotate {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: rotate(calc(-1 * var(--angle)));
+}
+
+.labelOffset {
+  transform: translateX(calc(var(--dotSize) / 2 + var(--labelGap)));
+}
+
+.activeLabel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  line-height: 1;
+  transform: translateY(-50%);
+}

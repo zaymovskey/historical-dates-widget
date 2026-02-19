@@ -1,7 +1,9 @@
+import { HistoricalDates } from "@/widgets/historical-dates/HistoricalDates";
+
 export function App() {
   return (
     <div>
-      <h1>Only test</h1>
+      <HistoricalDates />
     </div>
   );
 }

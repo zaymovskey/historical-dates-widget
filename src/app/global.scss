@@ -2,10 +2,18 @@
 
 body {
   font-family:
+    "PT Sans",
     system-ui,
     -apple-system,
-    BlinkMacSystemFont,
     sans-serif;
   background: #f6f7fb;
+  font-size: 16px;
+  line-height: 1.4;
   color: #1a1a1a;
+}
+
+:root {
+  --color-text: #42567a;
+  --color-accent-blue: #5d5fef;
+  --color-accent-pink: #ef5da8;
 }
