@@ -1,0 +1,27 @@
+.root {
+  position: relative;
+  padding-inline: 40px;
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  user-select: none;
+  transition: opacity 0.3s;
+}
+
+.prev {
+  left: -40px;
+}
+
+.next {
+  right: -40px;
+}
+
+.disabled {
+  opacity: 0;
+  pointer-events: none;
+}

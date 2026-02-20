@@ -14,13 +14,22 @@ interface CircleProps {
   activeIndex?: number;
   setActiveIndex?: Dispatch<React.SetStateAction<number>>;
   activeAngleDeg?: number;
+  years?: {
+    from: number;
+    to: number;
+  };
 }
 
 type CssVars = React.CSSProperties & {
   ["--angle"]?: string;
 };
 
-export function Circle({ items, activeIndex = 0, activeAngleDeg = 30 }: CircleProps) {
+export function Circle({
+  items,
+  activeIndex = 0,
+  activeAngleDeg = 30,
+  years = { from: 2015, to: 2022 }
+}: CircleProps) {
   const stepDeg = 360 / items.length;
   const offsetDeg = activeAngleDeg - stepDeg * activeIndex;
 
@@ -35,8 +44,8 @@ export function Circle({ items, activeIndex = 0, activeAngleDeg = 30 }: CirclePr
       </header>
 
       <div className={styles.years}>
-        <span className={styles.yearFrom}>2015</span>
-        <span className={styles.yearTo}>2022</span>
+        <span className={styles.yearFrom}>{years.from}</span>
+        <span className={styles.yearTo}>{years.to}</span>
       </div>
       <div className={styles.circleWrapper}>
         <div className={styles.circle}>
@@ -78,10 +87,10 @@ export function Circle({ items, activeIndex = 0, activeAngleDeg = 30 }: CirclePr
         <div className={styles.itemIndex}>06/06</div>
         <div className={styles.actionButtons}>
           <IconButton variant="outline">
-            <ArrowIcon />
+            <ArrowIcon direction="left" />
           </IconButton>
           <IconButton variant="outline">
-            <ArrowIcon direction="left" />
+            <ArrowIcon direction="right" />
           </IconButton>
         </div>
       </div>

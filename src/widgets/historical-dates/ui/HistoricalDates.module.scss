@@ -1,32 +1,18 @@
 .root {
   position: relative;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 80px 40px;
-}
-
-.title {
-  padding-left: 78px;
-  border-left: 7px solid;
-  border-image: linear-gradient(
-    to bottom,
-    var(--color-accent-blue),
-    var(--color-accent-pink)
-  );
-  border-image-slice: 1;
+  padding-top: clamp(59px, 10vw, 100px);
+  padding-bottom: clamp(13px, 10vw, 30px);
 }
 
 .axes {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 40px;
-  right: 40px;
-  height: 100vh;
-
+  min-height: 100vh;
+  height: 100%;
   pointer-events: none;
-  border-left: 1px solid var(--color-axis-line);
-  border-right: 1px solid var(--color-axis-line);
+  left: 0px;
+  width: 100%;
 
   &::before {
     content: "";
@@ -49,6 +35,5 @@
 }
 
 .events {
-  padding: 0 80px;
   margin-top: 56px;
 }

@@ -2,15 +2,24 @@ import type { SVGProps } from "react";
 
 interface ArrowIconProps extends SVGProps<SVGSVGElement> {
   direction?: "left" | "right";
+  width?: number;
 }
 
-export function ArrowIcon({ direction = "right", style, ...props }: ArrowIconProps) {
+export function ArrowIcon({
+  direction = "right",
+  width = 6.25,
+  style,
+  ...props
+}: ArrowIconProps) {
   return (
     <svg
       viewBox="0 0 9 14"
       fill="none"
       style={{
-        transform: direction === "left" ? "rotate(180deg)" : undefined,
+        width: `${width}px`,
+        height: "auto",
+        display: "block",
+        transform: direction === "right" ? "rotate(180deg)" : undefined,
         ...style
       }}
       {...props}

@@ -4,13 +4,13 @@
   position: relative;
   z-index: 2;
   top: -50px;
-  font-size: 56px;
   line-height: 1.1;
   font-weight: 600;
 }
 
 .title {
-  padding-left: 78px;
+  padding-left: var(--content-gutter);
+  font-size: 56px;
   border-left: 7px solid;
   border-image: linear-gradient(
     to bottom,
@@ -41,24 +41,16 @@
   }
 }
 
-.events {
-  position: relative;
-  z-index: 1;
-}
-
 // Years
 
 .years {
   position: absolute;
   inset: 0;
   z-index: 2;
-
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 120px;
-
-  font-size: 200px;
   line-height: 1;
   font-weight: 600;
 
@@ -68,6 +60,12 @@
 
   .yearTo {
     color: var(--color-accent-pink);
+  }
+
+  .yearFrom,
+  .yearTo {
+    font-size: clamp(56px, 15vw, 200px);
+    line-height: 1;
   }
 }
 
@@ -217,7 +215,7 @@
   position: absolute;
   bottom: 0;
   z-index: 3;
-  margin-left: 80px;
+  padding-left: var(--content-gutter);
 
   .itemIndex {
     margin-bottom: 20px;
