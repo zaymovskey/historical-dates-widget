@@ -19,12 +19,16 @@ export function HistoricalDates() {
     <section className={styles.root}>
       <div className={styles.axes} aria-hidden="true" />
 
-      <header className={styles.header}>
-        <div className={styles.accent} />
-        <h2 className={styles.title}>Исторические даты</h2>
-      </header>
-
       <div className={styles.stage}>
+        <header className={styles.header}>
+          <div className={styles.accent} />
+          <h2 className={styles.title}>
+            Исторические
+            <br />
+            даты
+          </h2>
+        </header>
+
         <div className={styles.years}>
           <span className={styles.yearFrom}>2015</span>
           <span className={styles.yearTo}>2022</span>
