@@ -1,124 +1,121 @@
 import { HistoricalPeriod } from "./types";
 
-export const periods: HistoricalPeriod[] = [
+export const historicalPeriods: HistoricalPeriod[] = [
   {
-    label: "Наука",
+    id: 1,
+    label: "Космическая эра",
+    yearFrom: 1957,
+    yearTo: 1969,
+    events: [
+      {
+        id: 101,
+        year: 1957,
+        description: "Запуск «Спутник-1» — первый искусственный спутник Земли"
+      },
+      {
+        id: 102,
+        year: 1959,
+        description: "Первая фотография обратной стороны Луны («Луна-3»)"
+      },
+      { id: 103, year: 1961, description: "Юрий Гагарин — первый человек в космосе" },
+      {
+        id: 104,
+        year: 1965,
+        description: "Алексей Леонов — первый выход в открытый космос"
+      },
+      { id: 105, year: 1969, description: "Высадка экипажа Apollo 11 на Луну" }
+    ]
+  },
+  {
+    id: 2,
+    label: "Технологическая революция",
+    yearFrom: 1971,
+    yearTo: 1991,
+    events: [
+      { id: 201, year: 1971, description: "Создание первого микропроцессора Intel 4004" },
+      { id: 202, year: 1975, description: "Основание Microsoft" },
+      { id: 203, year: 1981, description: "Выход IBM PC" },
+      { id: 204, year: 1984, description: "Презентация Apple Macintosh" },
+      { id: 205, year: 1991, description: "Публикация World Wide Web Тимом Бернерсом-Ли" }
+    ]
+  },
+  {
+    id: 3,
+    label: "Интернет и цифровая эпоха",
+    yearFrom: 1995,
+    yearTo: 2007,
+    events: [
+      { id: 301, year: 1998, description: "Основание Google" },
+      { id: 302, year: 2001, description: "Запуск Wikipedia" },
+      { id: 303, year: 2004, description: "Появление Facebook" },
+      { id: 304, year: 2005, description: "Запуск YouTube" },
+      { id: 305, year: 2007, description: "Презентация первого iPhone" }
+    ]
+  },
+  {
+    id: 4,
+    label: "Электромобили и ИИ",
+    yearFrom: 2010,
+    yearTo: 2017,
+    events: [
+      { id: 401, year: 2010, description: "Активный рост рынка электромобилей" },
+      {
+        id: 402,
+        year: 2012,
+        description: "Tesla Model S выходит в массовое производство"
+      },
+      {
+        id: 403,
+        year: 2014,
+        description: "Расширение автономных систем помощи водителю"
+      },
+      { id: 404, year: 2016, description: "AlphaGo побеждает чемпиона мира по игре го" },
+      {
+        id: 405,
+        year: 2017,
+        description: "Презентация электрического грузовика Tesla Semi"
+      }
+    ]
+  },
+  {
+    id: 5,
+    label: "Космос 2.0",
     yearFrom: 2015,
     yearTo: 2022,
     events: [
       {
+        id: 501,
         year: 2015,
-        description:
-          "13 сентября — частное солнечное затмение, видимое в Южной Африке и части Антарктиды."
+        description: "Первое успешное возвращение первой ступени Falcon 9"
       },
+      { id: 502, year: 2018, description: "Запуск Falcon Heavy" },
+      { id: 503, year: 2020, description: "Crew Dragon доставляет астронавтов на МКС" },
+      { id: 504, year: 2021, description: "Запуск миссии Artemis I" },
       {
-        year: 2016,
-        description:
-          "Телескоп «Хаббл» обнаружил самую удалённую из известных галактик, получившую обозначение GN-z11."
-      },
-      {
-        year: 2017,
-        description:
-          "Компания Tesla официально представила первый в мире электрический грузовик Tesla Semi."
-      }
-    ]
-  },
-  {
-    label: "Технологии",
-    yearFrom: 2008,
-    yearTo: 2014,
-    events: [
-      {
-        year: 2008,
-        description:
-          "Google представила браузер Chrome, который быстро стал одним из самых популярных в мире."
-      },
-      {
-        year: 2010,
-        description:
-          "Apple выпустила первый iPad, открыв новую категорию массовых устройств."
-      },
-      {
-        year: 2012,
-        description: "SpaceX впервые успешно состыковала корабль Dragon с МКС."
-      }
-    ]
-  },
-  {
-    label: "Космос",
-    yearFrom: 1995,
-    yearTo: 2003,
-    events: [
-      {
-        year: 1998,
-        description: "Начато строительство Международной космической станции."
-      },
-      {
-        year: 2000,
-        description: "На МКС прибыл первый постоянный экипаж."
-      },
-      {
-        year: 2003,
-        description: "Марсоход Spirit отправлен к поверхности Марса."
-      }
-    ]
-  },
-  {
-    label: "Медицина",
-    yearFrom: 2000,
-    yearTo: 2007,
-    events: [
-      {
-        year: 2001,
-        description: "Завершён первый проект по расшифровке генома человека."
-      },
-      {
-        year: 2004,
-        description: "Создана первая одобренная вакцина против вируса папилломы человека."
-      },
-      {
-        year: 2006,
-        description: "Разработаны новые методы таргетной терапии рака."
-      }
-    ]
-  },
-  {
-    label: "Экология",
-    yearFrom: 2018,
-    yearTo: 2023,
-    events: [
-      {
-        year: 2019,
-        description:
-          "Вступило в силу Парижское соглашение по климату для большинства стран."
-      },
-      {
-        year: 2020,
-        description: "Зафиксировано снижение выбросов CO₂ из-за глобальных ограничений."
-      },
-      {
+        id: 505,
         year: 2022,
-        description: "Приняты новые международные инициативы по защите океанов."
+        description: "Телескоп James Webb передаёт первые изображения"
       }
     ]
   },
   {
-    label: "Культура",
-    yearFrom: 1990,
-    yearTo: 1999,
+    id: 6,
+    label: "Современные технологии",
+    yearFrom: 2023,
+    yearTo: 2025,
     events: [
+      { id: 601, year: 2023, description: "Массовое внедрение генеративного ИИ" },
       {
-        year: 1991,
-        description:
-          "Выход альбома Nevermind группы Nirvana, повлиявшего на мировую музыку."
+        id: 602,
+        year: 2023,
+        description: "Расширение AI-ассистентов в повседневной жизни"
       },
+      { id: 603, year: 2024, description: "Рост локальных LLM-моделей" },
+      { id: 604, year: 2024, description: "Интеграция AI-агентов в бизнес-процессы" },
       {
-        year: 1994,
-        description: "Премьера фильма «Криминальное чтиво», ставшего культовым."
-      },
-      {
-        year: 1997,
-        description: "Опубликована первая книга серии о Гарри Поттере."
+        id: 605,
+        year: 2025,
+        description: "Автономные AI-системы в промышленности и сервисах"
       }
     ]
   }

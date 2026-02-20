@@ -1,11 +1,17 @@
 import styles from "./HistoricalDates.module.scss";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { periods } from "../model/data";
+import { historicalPeriods } from "../model/data";
 import { CircleItem, Circle } from "./Circle/Circle";
+import { EventsSlider } from "./EventsSlider/EventsSlider";
+import { useState } from "react";
 
 export function HistoricalDates() {
-  const circleItems: CircleItem[] = periods.map((period) => ({ label: period.label }));
+  const circleItems: CircleItem[] = historicalPeriods.map((period) => ({
+    id: period.id,
+    label: period.label
+  }));
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activePeriod = historicalPeriods[activeIndex];
 
   return (
     <section className={styles.root}>
@@ -14,17 +20,7 @@ export function HistoricalDates() {
       <Circle items={circleItems} />
 
       <div className={styles.events}>
-        <Swiper
-          spaceBetween={50}
-          slidesPerView={3}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
-        >
-          <SwiperSlide>Slide 1</SwiperSlide>
-          <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
-          <SwiperSlide>Slide 4</SwiperSlide>
-        </Swiper>
+        <EventsSlider items={activePeriod.events} />
       </div>
     </section>
   );

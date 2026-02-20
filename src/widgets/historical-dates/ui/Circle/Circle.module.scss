@@ -1,9 +1,12 @@
+// Header
+
 .header {
-  font-size: 56px;
   position: relative;
   z-index: 2;
-  line-height: 1.2;
   top: -50px;
+  font-size: 56px;
+  line-height: 1.1;
+  font-weight: 600;
 }
 
 .title {
@@ -17,10 +20,12 @@
   border-image-slice: 1;
 }
 
+// Stage
+
 .stage {
   position: relative;
-  height: 575px;
   z-index: 1;
+  height: 575px;
 
   &::after {
     content: "";
@@ -28,11 +33,11 @@
     left: 0;
     right: 0;
     top: 50%;
+    z-index: 0;
     height: 1px;
     background: var(--color-axis-line);
     transform: translateY(-0.5px);
     pointer-events: none;
-    z-index: 0;
   }
 }
 
@@ -41,34 +46,41 @@
   z-index: 1;
 }
 
+// Years
+
 .years {
   position: absolute;
   inset: 0;
+  z-index: 2;
+
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 120px;
-  z-index: 2;
 
   font-size: 200px;
+  line-height: 1;
   font-weight: 600;
+
+  .yearFrom {
+    color: var(--color-accent-blue);
+  }
+
+  .yearTo {
+    color: var(--color-accent-pink);
+  }
 }
 
-.yearFrom {
-  color: var(--color-accent-blue);
-}
-
-.yearTo {
-  color: var(--color-accent-pink);
-}
+// Circle
 
 .circleWrapper {
   position: absolute;
   inset: 0;
+  z-index: 3;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 3;
 }
 
 .circle {
@@ -85,6 +97,8 @@
   border: 1px solid var(--color-circle-border);
 }
 
+//  Point (anchor)
+
 .anchor {
   position: absolute;
   top: 50%;
@@ -97,10 +111,20 @@
 
   .labelUnrotate {
     display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: rotate(calc(-1 * var(--angle)));
   }
 
   &.isActive .labelUnrotate {
     display: block;
+  }
+
+  .animActiveDot,
+  .animDot {
+    position: absolute;
+    transition: transform 0.3s ease;
   }
 
   .animActiveDot {
@@ -111,7 +135,7 @@
     transform: scale(1);
   }
 
-  &:hover {
+  &:not(.isActive):hover {
     .animActiveDot {
       transform: scale(1);
     }
@@ -125,13 +149,15 @@
     border-color: var(--dot-color);
   }
 
-  &:hover .activeDot,
+  &:not(.isActive):hover .activeDot,
   &.isActive .activeDot {
     background: var(--color-background);
     border-color: var(--color-step-border);
     color: var(--color-text);
   }
 }
+
+// small dot
 
 .dot {
   width: 8px;
@@ -141,6 +167,8 @@
   transform: translate(-50%, -50%);
 }
 
+// big dot
+
 .activeDot {
   position: absolute;
   left: 0;
@@ -149,12 +177,11 @@
   height: var(--dotSize);
   border-radius: 50%;
 
-  background: var(--color-background);
-  border: 1px solid var(--color-step-border);
-
   display: grid;
   place-items: center;
 
+  background: var(--color-background);
+  border: 1px solid var(--color-step-border);
   transform: translate(-50%, -50%) rotate(calc(-1 * var(--angle)));
 
   transition:
@@ -165,14 +192,10 @@
 
 .activeIndex {
   font-size: 20px;
+  line-height: 1.2;
 }
 
-.labelUnrotate {
-  position: absolute;
-  left: 0;
-  top: 0;
-  transform: rotate(calc(-1 * var(--angle)));
-}
+// label content
 
 .labelOffset {
   transform: translateX(calc(var(--dotSize) / 2 + var(--labelGap)));
@@ -180,35 +203,28 @@
 
 .activeLabel {
   position: absolute;
-  font-weight: 600;
-  font-size: 20px;
   top: 0;
   left: 0;
   transform: translateY(-50%);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
 }
 
-.animActiveDot {
-  position: absolute;
-  transition: transform 0.3s ease;
-}
-
-.animDot {
-  position: absolute;
-  transition: transform 0.3s ease;
-}
+// Actions
 
 .actions {
   position: absolute;
   bottom: 0;
-  margin-left: 80px;
   z-index: 3;
-}
+  margin-left: 80px;
 
-.itemIndex {
-  margin-bottom: 20px;
-}
+  .itemIndex {
+    margin-bottom: 20px;
+  }
 
-.actionButtons {
-  display: flex;
-  gap: 20px;
+  .actionButtons {
+    display: flex;
+    gap: 20px;
+  }
 }

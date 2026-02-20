@@ -3,6 +3,7 @@
 :root {
   --color-text: #42567a;
   --color-accent-blue: #5d5fef;
+  --color-accent-blue2: #3877ee;
   --color-accent-pink: #ef5da8;
   --color-background: #f4f5f9;
 
@@ -21,6 +22,6 @@ body {
     sans-serif;
   background: var(--color-background);
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.6;
   color: var(--color-text);
 }

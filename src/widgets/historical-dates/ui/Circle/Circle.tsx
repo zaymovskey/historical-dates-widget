@@ -1,8 +1,11 @@
 import { Dispatch } from "react";
 import styles from "./Circle.module.scss";
 import { cn } from "@/shared/lib";
+import { IconButton } from "@/shared/ui";
+import { ArrowIcon } from "@/shared/ui";
 
 export interface CircleItem {
+  id: number;
   label: string;
 }
 
@@ -37,7 +40,7 @@ export function Circle({ items, activeIndex = 0, activeAngleDeg = 30 }: CirclePr
       </div>
       <div className={styles.circleWrapper}>
         <div className={styles.circle}>
-          {items.map((_, i) => {
+          {items.map((item, i) => {
             const angle = `${offsetDeg + stepDeg * i}deg`;
             const isActive = i === activeIndex;
 
@@ -46,7 +49,7 @@ export function Circle({ items, activeIndex = 0, activeAngleDeg = 30 }: CirclePr
             return (
               <button
                 type="button"
-                key={i}
+                key={item.id}
                 className={cn(styles.anchor, isActive && styles.isActive)}
                 style={style}
               >
@@ -62,12 +65,24 @@ export function Circle({ items, activeIndex = 0, activeAngleDeg = 30 }: CirclePr
 
                 <div className={styles.labelUnrotate} aria-hidden="true">
                   <div className={styles.labelOffset}>
-                    <span className={styles.activeLabel}>Наука</span>
+                    <span className={styles.activeLabel}>{item.label}</span>
                   </div>
                 </div>
               </button>
             );
           })}
+        </div>
+      </div>
+
+      <div className={styles.actions}>
+        <div className={styles.itemIndex}>06/06</div>
+        <div className={styles.actionButtons}>
+          <IconButton variant="outline">
+            <ArrowIcon />
+          </IconButton>
+          <IconButton variant="outline">
+            <ArrowIcon direction="left" />
+          </IconButton>
         </div>
       </div>
     </div>

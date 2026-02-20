@@ -1,56 +1,121 @@
-/* Box sizing */
+/* =========================
+   1. Box sizing
+========================= */
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* Remove default margin */
-body,
+/* =========================
+   2. Remove default margins
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================
+   3. Base html/body
+========================= */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================
+   4. Typography reset
+========================= */
+
 h1,
 h2,
 h3,
 h4,
-p,
-figure,
-blockquote,
-dl,
-dd {
-  margin: 0;
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
 }
 
-/* Remove list styles */
+p {
+  text-wrap: pretty;
+}
+
+/* =========================
+   5. Lists
+========================= */
+
 ul,
 ol {
   list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
-/* Improve media defaults */
+/* =========================
+   6. Media
+========================= */
+
 img,
-picture {
-  max-width: 100%;
+picture,
+video,
+canvas,
+svg {
   display: block;
+  max-width: 100%;
 }
 
-/* Inherit fonts */
+/* =========================
+   7. Forms
+========================= */
+
 input,
 button,
 textarea,
 select {
   font: inherit;
   color: inherit;
+  background: none;
+  border: none;
+  outline: none;
 }
 
-/* Remove button defaults */
 button {
-  border: none;
-  background: none;
   cursor: pointer;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* =========================
+   8. Links
+========================= */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =========================
+   9. Tables
+========================= */
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* =========================
+   10. Remove weird inline spacing
+========================= */
+
+span,
+a,
+button {
+  text-align: inherit;
 }
