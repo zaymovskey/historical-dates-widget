@@ -1,5 +1,6 @@
 import { ArrowIcon, IconButton } from "@/shared/ui";
 import styles from "./HistoricalDates.module.scss";
+import { cn } from "@/shared/lib";
 
 const POINTS = 6;
 const STEP_DEG = 360 / POINTS;
@@ -43,23 +44,28 @@ export function HistoricalDates() {
               const style: CssVars = { ["--angle"]: angle };
 
               return (
-                <div key={i} className={styles.anchor} style={style}>
-                  {isActive ? (
-                    <>
-                      <div className={styles.activeDot}>
-                        <span className={styles.activeIndex}>{i + 1}</span>
-                      </div>
+                <button
+                  type="button"
+                  key={i}
+                  className={cn(styles.anchor, isActive && styles.isActive)}
+                  style={style}
+                >
+                  <div className={styles.animDot}>
+                    <div className={styles.dot} aria-hidden="true" />
+                  </div>
 
-                      <div className={styles.labelUnrotate}>
-                        <div className={styles.labelOffset}>
-                          <span className={styles.activeLabel}>Наука</span>
-                        </div>
-                      </div>
-                    </>
-                  ) : (
-                    <div className={styles.dot} />
-                  )}
-                </div>
+                  <div className={styles.animActiveDot}>
+                    <div className={styles.activeDot} aria-hidden="true">
+                      <span className={styles.activeIndex}>{i + 1}</span>
+                    </div>
+                  </div>
+
+                  <div className={styles.labelUnrotate} aria-hidden="true">
+                    <div className={styles.labelOffset}>
+                      <span className={styles.activeLabel}>Наука</span>
+                    </div>
+                  </div>
+                </button>
               );
             })}
           </div>
