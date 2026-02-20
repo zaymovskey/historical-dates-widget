@@ -170,3 +170,19 @@
 .yearTo {
   color: var(--color-accent-pink);
 }
+
+.actions {
+  position: absolute;
+  bottom: 0;
+  margin-left: 80px;
+  z-index: 3;
+}
+
+.itemIndex {
+  margin-bottom: 20px;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 20px;
+}

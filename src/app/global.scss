@@ -9,6 +9,8 @@
   --color-step-border: rgba(48, 62, 88, 0.5);
   --color-axis-line: rgba(48, 62, 88, 0.12);
   --color-circle-border: rgba(66, 86, 122, 0.2);
+
+  --color-slider-button: rgba(66, 86, 122, 0.5);
 }
 
 body {
@@ -18,7 +20,7 @@ body {
     -apple-system,
     sans-serif;
   background: var(--color-background);
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.4;
   color: var(--color-text);
 }

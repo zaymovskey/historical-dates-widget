@@ -1,3 +1,4 @@
+import { ArrowIcon, IconButton } from "@/shared/ui";
 import styles from "./HistoricalDates.module.scss";
 
 const POINTS = 6;
@@ -21,7 +22,6 @@ export function HistoricalDates() {
 
       <div className={styles.stage}>
         <header className={styles.header}>
-          <div className={styles.accent} />
           <h2 className={styles.title}>
             Исторические
             <br />
@@ -62,6 +62,18 @@ export function HistoricalDates() {
                 </div>
               );
             })}
+          </div>
+        </div>
+
+        <div className={styles.actions}>
+          <div className={styles.itemIndex}>06/06</div>
+          <div className={styles.actionButtons}>
+            <IconButton variant="outline">
+              <ArrowIcon />
+            </IconButton>
+            <IconButton variant="outline">
+              <ArrowIcon direction="left" />
+            </IconButton>
           </div>
         </div>
       </div>
