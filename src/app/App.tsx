@@ -1,9 +1,9 @@
-import { HistoricalDates } from "@/widgets/historical-dates/HistoricalDates";
+import { HistoricalDates } from "@/widgets/historical-dates";
 
 export function App() {
   return (
-    <div>
+    <main>
       <HistoricalDates />
-    </div>
+    </main>
   );
 }

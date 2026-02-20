@@ -20,6 +20,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"]
+      },
+      {
         test: /\.[jt]sx?$/,
         loader: "ts-loader",
         exclude: /node_modules/

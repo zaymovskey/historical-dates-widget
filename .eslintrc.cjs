@@ -18,5 +18,14 @@ module.exports = {
   rules: {
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }]
-  }
+  },
+  overrides: [
+    {
+      files: ["webpack.config.js", "*.config.js"],
+      env: { node: true },
+      rules: {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ]
 };
