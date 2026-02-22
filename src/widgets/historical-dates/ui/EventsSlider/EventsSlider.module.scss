@@ -37,6 +37,9 @@
 
 @media (max-width: 768px) {
   .swiper {
+    :global(.swiper-slide) {
+      transition: opacity 0.3s;
+    }
     :global(.swiper-slide-next),
     :global(.swiper-slide-prev) {
       opacity: 0.6;
