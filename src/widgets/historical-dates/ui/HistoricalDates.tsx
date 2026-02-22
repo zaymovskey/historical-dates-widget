@@ -5,6 +5,7 @@ import { CircleItem, Circle } from "./Circle/Circle";
 import { EventsSlider } from "./EventsSlider/EventsSlider";
 import { useState } from "react";
 import { cn } from "@/shared/lib";
+import { CircleActions } from "./Circle/CircleActions/CircleActions";
 
 export function HistoricalDates() {
   const circleItems: CircleItem[] = historicalPeriods.map((period) => ({
@@ -24,9 +25,17 @@ export function HistoricalDates() {
         years={{ from: activePeriod.yearFrom, to: activePeriod.yearTo }}
       />
 
-      <div className={cn(styles.events, "content-padding")}>
-        <EventsSlider items={activePeriod.events} />
+      <div className={cn(styles.events)}>
+        <div className={styles.eventsWrapper}>
+          <EventsSlider items={activePeriod.events} />
+        </div>
       </div>
+
+      <CircleActions
+        activeIndex={activeIndex}
+        itemsLength={circleItems.length}
+        className={styles.circleActions}
+      />
     </section>
   );
 }

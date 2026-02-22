@@ -9,13 +9,12 @@ interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
-  ({ variant = "outline", className, children, size = 50, ...props }, ref) => {
+  ({ variant = "outline", className, children, ...props }, ref) => {
     return (
       <button
         ref={ref}
         type="button"
         className={cn(styles.root, styles[variant], className)}
-        style={{ width: `${size}px`, height: `${size}px` }}
         {...props}
       >
         {children}

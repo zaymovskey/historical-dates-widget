@@ -2,6 +2,10 @@
   position: relative;
   padding-top: clamp(59px, 10vw, 100px);
   padding-bottom: clamp(13px, 10vw, 30px);
+
+  @media (max-width: 768px) {
+    height: 100vh;
+  }
 }
 
 .axes {
@@ -22,18 +26,30 @@
     width: 1px;
     background: var(--color-axis-line);
     transform: translateX(-0.5px);
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 }
 
-.itemIndex {
-  margin-bottom: 20px;
-}
-
-.actionButtons {
-  display: flex;
-  gap: 20px;
-}
-
 .events {
-  margin-top: 56px;
+  @media (max-width: 768px) {
+    margin-right: calc(-1 * var(--content-gutter));
+  }
+}
+
+.circleActions {
+  position: absolute;
+  bottom: 13px;
+  z-index: 3;
+  padding-left: var(--content-gutter);
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    padding-left: 0;
+  }
 }

@@ -1,0 +1,24 @@
+.itemIndex {
+  margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 10px;
+  }
+}
+
+.actionButtons {
+  display: flex;
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    gap: 8px;
+  }
+}
+
+.actionButton {
+  --btn-size: 50px;
+
+  @media (max-width: 768px) {
+    --btn-size: 25px;
+  }
+}

@@ -6,8 +6,11 @@
 .container {
   max-width: 1440px;
   margin: 0 auto;
-  border-left: 1px solid var(--color-axis-line);
-  border-right: 1px solid var(--color-axis-line);
+  border-inline: 1px solid var(--color-axis-line);
   min-height: 100vh;
   height: 100%;
+
+  @media (max-width: 768px) {
+    border: none;
+  }
 }

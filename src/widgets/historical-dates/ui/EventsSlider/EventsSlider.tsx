@@ -1,10 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/pagination";
 import { HistoricalPeriodEvent } from "../../model/types";
-import { EventsCard } from "@/widgets/historical-dates/ui/EventsSlider/EventCard/EventCard";
+import { EventsCard } from "./EventCard/EventCard";
 import { ArrowIcon, IconButton } from "@/shared/ui";
 import styles from "./EventsSlider.module.scss";
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 
 interface EventsSliderProps {
   items: HistoricalPeriodEvent[];
@@ -23,14 +24,23 @@ export function EventsSlider({ items }: EventsSliderProps) {
       </IconButton>
 
       <Swiper
-        modules={[Navigation]}
+        className={styles.swiper}
+        modules={[Navigation, Pagination]}
         navigation={{
           prevEl: `.${styles.prev}`,
           nextEl: `.${styles.next}`,
           disabledClass: styles.disabled
         }}
-        spaceBetween={50}
-        slidesPerView={3}
+        spaceBetween={25}
+        slidesPerView={1.5}
+        pagination={{ clickable: true, enabled: true }}
+        breakpoints={{
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 80,
+            pagination: false
+          }
+        }}
       >
         {items.map((event) => (
           <SwiperSlide key={event.id}>

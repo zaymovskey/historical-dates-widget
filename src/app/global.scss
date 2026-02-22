@@ -13,7 +13,9 @@
 
   --color-slider-button: rgba(66, 86, 122, 0.5);
 
-  --content-gutter: clamp(20px, 5vw, 80px);
+  --color-gray-border: #c7cdd9;
+
+  --content-gutter: clamp(20px, 3vw, 80px);
 }
 
 body {
@@ -30,4 +32,8 @@ body {
 
 .content-padding {
   padding-inline: var(--content-gutter);
+}
+
+#root {
+  min-width: 320px;
 }
