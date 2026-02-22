@@ -1,4 +1,4 @@
-import { Dispatch } from "react";
+import { CSSProperties, Dispatch, SetStateAction } from "react";
 import styles from "./Circle.module.scss";
 import { cn } from "@/shared/lib";
 import { IconButton } from "@/shared/ui";
@@ -12,7 +12,7 @@ export interface CircleItem {
 interface CircleProps {
   items: CircleItem[];
   activeIndex?: number;
-  setActiveIndex?: Dispatch<React.SetStateAction<number>>;
+  setActiveIndex?: Dispatch<SetStateAction<number>>;
   activeAngleDeg?: number;
   years?: {
     from: number;
@@ -20,13 +20,13 @@ interface CircleProps {
   };
 }
 
-type CssVars = React.CSSProperties & {
+type CssVars = CSSProperties & {
   ["--angle"]?: string;
 };
 
 export function Circle({
   items,
-  activeIndex = 0,
+  activeIndex = 4,
   activeAngleDeg = 30,
   years = { from: 2015, to: 2022 }
 }: CircleProps) {
@@ -84,7 +84,9 @@ export function Circle({
       </div>
 
       <div className={styles.actions}>
-        <div className={styles.itemIndex}>06/06</div>
+        <div className={styles.itemIndex}>
+          {"0" + (activeIndex + 1)}/{"0" + items.length}
+        </div>
         <div className={styles.actionButtons}>
           <IconButton variant="outline">
             <ArrowIcon direction="left" />

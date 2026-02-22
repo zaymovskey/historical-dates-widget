@@ -10,7 +10,7 @@
 
 .title {
   padding-left: var(--content-gutter);
-  font-size: 56px;
+  font-size: clamp(20px, 5vw, 56px);
   border-left: 7px solid;
   border-image: linear-gradient(
     to bottom,
@@ -82,9 +82,9 @@
 }
 
 .circle {
-  --circle-size: 530px;
+  --circle-size: clamp(430px, 50vw, 530px);
   --dot-color: var(--color-text);
-  --radius: 265px;
+  --radius: calc(var(--circle-size) / 2);
   --dotSize: 56px;
   --labelGap: 14px;
 

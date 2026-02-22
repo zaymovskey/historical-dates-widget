@@ -14,11 +14,11 @@
 }
 
 .prev {
-  left: -40px;
+  left: clamp(-20px, 1vw, -40px);
 }
 
 .next {
-  right: -40px;
+  right: clamp(-20px, 1vw, -40px);
 }
 
 .disabled {
