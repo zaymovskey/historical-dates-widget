@@ -59,41 +59,6 @@
   }
 }
 
-// Years
-
-.years {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: clamp(25px, 5vw, 120px);
-  line-height: 1;
-  font-weight: 600;
-
-  .yearFrom {
-    color: var(--color-accent-blue);
-  }
-
-  .yearTo {
-    color: var(--color-accent-pink);
-  }
-
-  .yearFrom,
-  .yearTo {
-    font-size: clamp(56px, 15vw, 200px);
-    line-height: 1;
-  }
-
-  @media (max-width: 768px) {
-    position: static;
-    padding-bottom: 58px;
-    border-bottom: 1px solid var(--color-gray-border);
-    margin-bottom: 20px;
-  }
-}
-
 // Circle
 
 .circleWrapper {
@@ -147,7 +112,7 @@
   .animActiveDot,
   .animDot {
     position: absolute;
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-duration-default) ease;
   }
 
   .animActiveDot {
@@ -208,9 +173,9 @@
   transform: translate(-50%, -50%) rotate(calc(-1 * var(--angle)));
 
   transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease,
-    color 0.3s ease;
+    background-color var(--transition-duration-default) ease,
+    border-color var(--transition-duration-default) ease,
+    color var(--transition-duration-default) ease;
 }
 
 .activeIndex {

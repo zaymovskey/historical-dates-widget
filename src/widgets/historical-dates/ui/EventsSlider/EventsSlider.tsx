@@ -6,14 +6,30 @@ import { EventsCard } from "./EventCard/EventCard";
 import { ArrowIcon, IconButton } from "@/shared/ui";
 import styles from "./EventsSlider.module.scss";
 import { Navigation, Pagination } from "swiper/modules";
+import { useRef } from "react";
+import { useGSAP, gsap } from "@/shared/lib";
+import { HISTORICAL_DATES_ANIMATION } from "../../model/animation";
 
 interface EventsSliderProps {
   items: HistoricalPeriodEvent[];
+  activeIndex: number;
 }
 
-export function EventsSlider({ items }: EventsSliderProps) {
+export function EventsSlider({ items, activeIndex }: EventsSliderProps) {
+  const rootRef = useRef<HTMLDivElement | null>(null);
+
+  useGSAP(
+    () => {
+      const el = rootRef.current;
+      if (!el) return;
+      gsap.killTweensOf(el);
+      gsap.fromTo(el, { autoAlpha: 0 }, { autoAlpha: 1, ...HISTORICAL_DATES_ANIMATION });
+    },
+    { dependencies: [activeIndex] }
+  );
+
   return (
-    <div className={styles.root}>
+    <div ref={rootRef} className={styles.root}>
       <IconButton
         className={styles.prev}
         size={40}

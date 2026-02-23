@@ -16,7 +16,7 @@
   transform: translateY(-50%);
   z-index: 5;
   user-select: none;
-  transition: opacity 0.3s;
+  transition: opacity var(--transition-duration-default);
   width: 30px;
   height: 30px;
   @media (max-width: 768px) {
@@ -38,7 +38,7 @@
 @media (max-width: 768px) {
   .swiper {
     :global(.swiper-slide) {
-      transition: opacity 0.3s;
+      transition: opacity var(--transition-duration-default);
     }
     :global(.swiper-slide-next),
     :global(.swiper-slide-prev) {
@@ -61,8 +61,8 @@
       background: var(--color-text);
       opacity: 0.25;
       transition:
-        opacity 150ms ease,
-        transform 150ms ease;
+        opacity var(--transition-duration-default) ease,
+        transform var(--transition-duration-default) ease;
     }
 
     :global(.swiper-pagination-bullet-active) {

@@ -3,6 +3,7 @@ import styles from "./Circle.module.scss";
 import { cn } from "@/shared/lib";
 import { useIsMobile } from "@/shared/hooks";
 import { ChangeIndexHandler, CircleActions } from "./CircleActions/CircleActions";
+import { YearsCounter } from "../YearsCounter/YearsCounter";
 
 export interface CircleItem {
   id: number;
@@ -50,10 +51,7 @@ export function Circle({
         </h2>
       </header>
 
-      <div className={styles.years}>
-        <span className={styles.yearFrom}>{years.from}</span>
-        <span className={styles.yearTo}>{years.to}</span>
-      </div>
+      <YearsCounter from={years.from} to={years.to} activeIndex={activeIndex} />
 
       {!isMobile && (
         <div className={styles.circleWrapper}>

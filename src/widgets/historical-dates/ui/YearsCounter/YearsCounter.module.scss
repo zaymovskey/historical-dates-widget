@@ -1,0 +1,32 @@
+.root {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(25px, 5vw, 120px);
+  line-height: 1;
+  font-weight: 600;
+
+  .yearFrom {
+    color: var(--color-accent-blue);
+  }
+
+  .yearTo {
+    color: var(--color-accent-pink);
+  }
+
+  .yearFrom,
+  .yearTo {
+    font-size: clamp(56px, 15vw, 200px);
+    line-height: 1;
+  }
+
+  @media (max-width: 768px) {
+    position: static;
+    padding-bottom: 58px;
+    border-bottom: 1px solid var(--color-gray-border);
+    margin-bottom: 20px;
+  }
+}
