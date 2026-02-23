@@ -3,7 +3,7 @@
 ## 🌐 Онлайн-демо
 
 Проект задеплоен на Vercel:
-https://your-link.vercel.app
+https://historical-dates-widget.vercel.app
 
 ## Требования
 
