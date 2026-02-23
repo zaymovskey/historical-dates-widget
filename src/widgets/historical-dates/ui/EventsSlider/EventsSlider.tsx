@@ -8,7 +8,6 @@ import styles from "./EventsSlider.module.scss";
 import { Navigation, Pagination } from "swiper/modules";
 import { useRef } from "react";
 import { useGSAP, gsap } from "@/shared/lib";
-import { HISTORICAL_DATES_ANIMATION } from "../../model/animation";
 
 interface EventsSliderProps {
   items: HistoricalPeriodEvent[];
@@ -22,8 +21,14 @@ export function EventsSlider({ items, activeIndex }: EventsSliderProps) {
     () => {
       const el = rootRef.current;
       if (!el) return;
+
       gsap.killTweensOf(el);
-      gsap.fromTo(el, { autoAlpha: 0 }, { autoAlpha: 1, ...HISTORICAL_DATES_ANIMATION });
+
+      gsap
+        .timeline()
+        .to(el, { autoAlpha: 0, duration: 0.3 })
+        .to({}, { duration: 0.3 })
+        .to(el, { autoAlpha: 1, duration: 0.3 });
     },
     { dependencies: [activeIndex] }
   );

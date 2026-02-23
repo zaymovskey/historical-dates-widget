@@ -5,7 +5,6 @@ import { useIsMobile } from "@/shared/hooks";
 import { ChangeIndexHandler, CircleActions } from "./CircleActions/CircleActions";
 import { YearsCounter } from "../YearsCounter/YearsCounter";
 import { useGSAP, gsap } from "@/shared/lib";
-import { HISTORICAL_DATES_ANIMATION } from "../../model/animation";
 
 export interface CircleItem {
   id: number;
@@ -27,6 +26,27 @@ type CssVars = CSSProperties & {
   ["--angle"]?: string;
 };
 
+const getPositionsDelta = (from: number, to: number, total: number) => {
+  let delta = to - from;
+
+  if (delta > total / 2) {
+    delta -= total;
+  }
+  if (delta < -total / 2) {
+    delta += total;
+  }
+
+  if (Math.abs(delta) === total / 2) {
+    delta = total / 2;
+  }
+  return delta;
+};
+
+const normalizeInRange = (a: number, total = 360) => {
+  const m = a % total;
+  return m < 0 ? m + total : m;
+};
+
 export function Circle({
   items,
   activeIndex = 4,
@@ -44,26 +64,81 @@ export function Circle({
     setActiveIndex?.(next);
   };
 
-  const rotationRef = useRef({ v: activeAngleDeg - stepDeg * activeIndex });
+  const rotationRef = useRef({ v: stepDeg * activeIndex + activeAngleDeg });
+
+  useGSAP(() => {
+    const wheelEl = wheelRef.current;
+    if (!wheelEl) return;
+
+    const activeBadge = wheelEl.querySelector(
+      `[data-idx="${activeIndex}"] [data-badge]`
+    ) as HTMLElement | null;
+
+    if (activeBadge) {
+      gsap.set(activeBadge, { autoAlpha: 1 });
+    }
+  }, []);
 
   useGSAP(
     () => {
-      const el = wheelRef.current;
-      if (!el) return;
+      const wheelEl = wheelRef.current;
+      if (!wheelEl) return;
+      const rawTarget = activeAngleDeg - stepDeg * activeIndex;
 
-      const target = activeAngleDeg - stepDeg * activeIndex;
+      const currentNorm = normalizeInRange(rotationRef.current.v, 360);
+      const targetNorm = normalizeInRange(rawTarget, 360);
+
+      const delta = getPositionsDelta(currentNorm, targetNorm, 360);
+      const target = rotationRef.current.v + delta;
 
       gsap.killTweensOf(rotationRef.current);
-
       gsap.to(rotationRef.current, {
         v: target,
-        ...HISTORICAL_DATES_ANIMATION,
+        duration: 0.9,
         overwrite: true,
         onUpdate: () => {
-          gsap.set(el, { rotate: rotationRef.current.v });
-          gsap.set(el, { "--wheel-rot": `${rotationRef.current.v}deg` });
+          gsap.set(wheelEl, {
+            rotate: rotationRef.current.v,
+            "--wheel-rot": `${rotationRef.current.v}deg`
+          });
         }
       });
+    },
+    { dependencies: [activeIndex, activeAngleDeg, stepDeg] }
+  );
+
+  const prevActiveRef = useRef(activeIndex);
+
+  useGSAP(
+    () => {
+      const wheelEl = wheelRef.current;
+      if (!wheelEl) return;
+
+      const prevIdx = prevActiveRef.current;
+      const nextIdx = activeIndex;
+
+      const prevBadge = wheelEl.querySelector(
+        `[data-idx="${prevIdx}"] [data-badge]`
+      ) as HTMLElement | null;
+
+      const nextBadge = wheelEl.querySelector(
+        `[data-idx="${nextIdx}"] [data-badge]`
+      ) as HTMLElement | null;
+
+      if (!prevBadge || !nextBadge) {
+        prevActiveRef.current = nextIdx;
+        return;
+      }
+
+      if (prevIdx === nextIdx) return;
+
+      gsap.killTweensOf([prevBadge, nextBadge]);
+
+      const tl = gsap.timeline();
+      tl.to(prevBadge, { autoAlpha: 0, duration: 0.3 }, 0);
+      tl.fromTo(nextBadge, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3 }, 0);
+
+      prevActiveRef.current = nextIdx;
     },
     { dependencies: [activeIndex] }
   );
@@ -92,6 +167,7 @@ export function Circle({
               return (
                 <button
                   type="button"
+                  data-idx={i}
                   key={item.id}
                   className={cn(styles.anchor, isActive && styles.isActive)}
                   style={style}
@@ -107,7 +183,7 @@ export function Circle({
                     </div>
                   </div>
 
-                  <div className={styles.labelUnrotate} aria-hidden="true">
+                  <div className={styles.labelUnrotate} aria-hidden="true" data-badge>
                     <div className={styles.labelOffset}>
                       <span className={styles.activeLabel}>{item.label}</span>
                     </div>
