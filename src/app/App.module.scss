@@ -8,6 +8,7 @@
   margin: 0 auto;
   border-inline: 1px solid var(--color-axis-line);
   height: 100%;
+  min-height: 100vh;
 
   @media (max-width: 768px) {
     border: none;
