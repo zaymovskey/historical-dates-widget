@@ -6,32 +6,51 @@ import { EventsCard } from "./EventCard/EventCard";
 import { ArrowIcon, IconButton } from "@/shared/ui";
 import styles from "./EventsSlider.module.scss";
 import { Navigation, Pagination } from "swiper/modules";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGSAP, gsap } from "@/shared/lib";
 
 interface EventsSliderProps {
   items: HistoricalPeriodEvent[];
-  activeIndex: number;
 }
 
-export function EventsSlider({ items, activeIndex }: EventsSliderProps) {
+export function EventsSlider({ items }: EventsSliderProps) {
   const rootRef = useRef<HTMLDivElement | null>(null);
 
-  useGSAP(
-    () => {
-      const el = rootRef.current;
-      if (!el) return;
+  const [visibleItems, setVisibleItems] = useState(items);
+  const firstRenderRef = useRef(true);
 
-      gsap.killTweensOf(el);
+  useEffect(() => {
+    if (firstRenderRef.current) {
+      firstRenderRef.current = false;
+      return;
+    }
 
-      gsap
-        .timeline()
-        .to(el, { autoAlpha: 0, duration: 0.3 })
-        .to({}, { duration: 0.3 })
-        .to(el, { autoAlpha: 1, duration: 0.3 });
-    },
-    { dependencies: [activeIndex] }
-  );
+    const el = rootRef.current;
+    if (!el) return;
+
+    gsap.killTweensOf(el);
+
+    gsap.to(el, {
+      autoAlpha: 0,
+      duration: 0.3,
+      ease: "power1.inOut",
+      onComplete: () => {
+        setVisibleItems(items);
+
+        gsap.to(el, {
+          autoAlpha: 1,
+          duration: 0.3,
+          ease: "power1.inOut"
+        });
+      }
+    });
+  }, [items]);
+
+  useGSAP(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    gsap.set(el, { autoAlpha: 1 });
+  }, []);
 
   return (
     <div ref={rootRef} className={styles.root}>
@@ -63,7 +82,7 @@ export function EventsSlider({ items, activeIndex }: EventsSliderProps) {
           }
         }}
       >
-        {items.map((event) => (
+        {visibleItems.map((event) => (
           <SwiperSlide key={event.id}>
             <EventsCard key={event.id} event={event} />
           </SwiperSlide>

@@ -31,7 +31,7 @@ export function HistoricalDates() {
       />
 
       <div className={cn(styles.events)}>
-        <EventsSlider items={activePeriod.events} activeIndex={activeIndex} />
+        <EventsSlider items={activePeriod.events} />
       </div>
 
       <CircleActions
