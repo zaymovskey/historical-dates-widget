@@ -33,14 +33,12 @@ export function EventsSlider({ items }: EventsSliderProps) {
     gsap.to(el, {
       autoAlpha: 0,
       duration: 0.3,
-      ease: "power1.inOut",
       onComplete: () => {
         setVisibleItems(items);
 
         gsap.to(el, {
           autoAlpha: 1,
-          duration: 0.3,
-          ease: "power1.inOut"
+          duration: 0.3
         });
       }
     });
