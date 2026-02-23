@@ -5,6 +5,7 @@ import { useIsMobile } from "@/shared/hooks";
 import { ChangeIndexHandler, CircleActions } from "./CircleActions/CircleActions";
 import { YearsCounter } from "../YearsCounter/YearsCounter";
 import { useGSAP, gsap } from "@/shared/lib";
+import { ANIMATION_DURATION } from "../../model/animations";
 
 export interface CircleItem {
   id: number;
@@ -94,7 +95,7 @@ export function Circle({
       gsap.killTweensOf(rotationRef.current);
       gsap.to(rotationRef.current, {
         v: target,
-        duration: 0.9,
+        duration: ANIMATION_DURATION,
         overwrite: true,
         onUpdate: () => {
           gsap.set(wheelEl, {

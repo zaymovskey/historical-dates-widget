@@ -2,6 +2,7 @@ import { useRef } from "react";
 import styles from "./YearsCounter.module.scss";
 import { useGSAP, gsap } from "@/shared/lib";
 type Years = { from: number; to: number };
+import { ANIMATION_DURATION } from "../../model/animations";
 
 interface YearsCounterProps extends Years {
   from: number;
@@ -29,7 +30,7 @@ export function YearsCounter({ from, to, activeIndex }: YearsCounterProps) {
 
       gsap.to(fromObj, {
         v: from,
-        duration: 0.9,
+        duration: ANIMATION_DURATION,
         overwrite: true,
         onUpdate: () => {
           fromEl.textContent = String(Math.round(fromObj.v));
@@ -38,7 +39,7 @@ export function YearsCounter({ from, to, activeIndex }: YearsCounterProps) {
 
       gsap.to(toObj, {
         v: to,
-        duration: 0.9,
+        duration: ANIMATION_DURATION,
         overwrite: true,
         onUpdate: () => {
           toEl.textContent = String(Math.round(toObj.v));

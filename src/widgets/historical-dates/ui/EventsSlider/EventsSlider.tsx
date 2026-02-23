@@ -8,6 +8,7 @@ import styles from "./EventsSlider.module.scss";
 import { Navigation, Pagination } from "swiper/modules";
 import { useEffect, useRef, useState } from "react";
 import { useGSAP, gsap } from "@/shared/lib";
+import { ANIMATION_DURATION } from "../../model/animations";
 
 interface EventsSliderProps {
   items: HistoricalPeriodEvent[];
@@ -32,13 +33,13 @@ export function EventsSlider({ items }: EventsSliderProps) {
 
     gsap.to(el, {
       autoAlpha: 0,
-      duration: 0.3,
+      duration: ANIMATION_DURATION / 2,
       onComplete: () => {
         setVisibleItems(items);
 
         gsap.to(el, {
           autoAlpha: 1,
-          duration: 0.3
+          duration: ANIMATION_DURATION / 2
         });
       }
     });
