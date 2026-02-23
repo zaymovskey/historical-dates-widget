@@ -1,4 +1,4 @@
 export const HISTORICAL_DATES_ANIMATION = {
-  duration: 0.45,
-  ease: "power2.out"
+  duration: 1,
+  ease: "power1.inOut"
 } as const;

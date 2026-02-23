@@ -1,9 +1,11 @@
-import { CSSProperties } from "react";
+import { CSSProperties, useRef } from "react";
 import styles from "./Circle.module.scss";
 import { cn } from "@/shared/lib";
 import { useIsMobile } from "@/shared/hooks";
 import { ChangeIndexHandler, CircleActions } from "./CircleActions/CircleActions";
 import { YearsCounter } from "../YearsCounter/YearsCounter";
+import { useGSAP, gsap } from "@/shared/lib";
+import { HISTORICAL_DATES_ANIMATION } from "../../model/animation";
 
 export interface CircleItem {
   id: number;
@@ -33,13 +35,38 @@ export function Circle({
   setActiveIndex
 }: CircleProps) {
   const stepDeg = 360 / items.length;
-  const offsetDeg = activeAngleDeg - stepDeg * activeIndex;
 
   const isMobile = useIsMobile();
+
+  const wheelRef = useRef<HTMLDivElement | null>(null);
 
   const handleChangeIndex = (next: number) => {
     setActiveIndex?.(next);
   };
+
+  const rotationRef = useRef({ v: activeAngleDeg - stepDeg * activeIndex });
+
+  useGSAP(
+    () => {
+      const el = wheelRef.current;
+      if (!el) return;
+
+      const target = activeAngleDeg - stepDeg * activeIndex;
+
+      gsap.killTweensOf(rotationRef.current);
+
+      gsap.to(rotationRef.current, {
+        v: target,
+        ...HISTORICAL_DATES_ANIMATION,
+        overwrite: true,
+        onUpdate: () => {
+          gsap.set(el, { rotate: rotationRef.current.v });
+          gsap.set(el, { "--wheel-rot": `${rotationRef.current.v}deg` });
+        }
+      });
+    },
+    { dependencies: [activeIndex] }
+  );
 
   return (
     <div className={styles.stage}>
@@ -55,9 +82,9 @@ export function Circle({
 
       {!isMobile && (
         <div className={styles.circleWrapper}>
-          <div className={styles.circle}>
+          <div className={styles.circle} ref={wheelRef}>
             {items.map((item, i) => {
-              const angle = `${offsetDeg + stepDeg * i}deg`;
+              const angle = `${stepDeg * i}deg`;
               const isActive = i === activeIndex;
 
               const style: CssVars = { ["--angle"]: angle };
