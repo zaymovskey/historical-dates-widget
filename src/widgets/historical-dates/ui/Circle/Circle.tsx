@@ -1,8 +1,8 @@
-import { CSSProperties, Dispatch, SetStateAction } from "react";
+import { CSSProperties } from "react";
 import styles from "./Circle.module.scss";
 import { cn } from "@/shared/lib";
 import { useIsMobile } from "@/shared/hooks";
-import { CircleActions } from "./CircleActions/CircleActions";
+import { ChangeIndexHandler, CircleActions } from "./CircleActions/CircleActions";
 
 export interface CircleItem {
   id: number;
@@ -12,7 +12,7 @@ export interface CircleItem {
 interface CircleProps {
   items: CircleItem[];
   activeIndex?: number;
-  setActiveIndex?: Dispatch<SetStateAction<number>>;
+  setActiveIndex?: ChangeIndexHandler;
   activeAngleDeg?: number;
   years?: {
     from: number;
@@ -28,12 +28,17 @@ export function Circle({
   items,
   activeIndex = 4,
   activeAngleDeg = 30,
-  years = { from: 2015, to: 2022 }
+  years = { from: 2015, to: 2022 },
+  setActiveIndex
 }: CircleProps) {
   const stepDeg = 360 / items.length;
   const offsetDeg = activeAngleDeg - stepDeg * activeIndex;
 
   const isMobile = useIsMobile();
+
+  const handleChangeIndex = (next: number) => {
+    setActiveIndex?.(next);
+  };
 
   return (
     <div className={styles.stage}>
@@ -65,6 +70,7 @@ export function Circle({
                   key={item.id}
                   className={cn(styles.anchor, isActive && styles.isActive)}
                   style={style}
+                  onClick={() => handleChangeIndex(i)}
                 >
                   <div className={styles.animDot}>
                     <div className={styles.dot} aria-hidden="true" />
@@ -92,6 +98,7 @@ export function Circle({
         activeIndex={activeIndex}
         itemsLength={items.length}
         className={styles.circleActions}
+        onChangeIndex={handleChangeIndex}
       />
     </div>
   );

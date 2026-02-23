@@ -15,6 +15,10 @@ export function HistoricalDates() {
   const [activeIndex, setActiveIndex] = useState(0);
   const activePeriod = historicalPeriods[activeIndex];
 
+  const handleChangeIndex = (next: number) => {
+    setActiveIndex(next);
+  };
+
   return (
     <section className={styles.root}>
       <div className={styles.axes} aria-hidden="true" />
@@ -23,18 +27,18 @@ export function HistoricalDates() {
         items={circleItems}
         activeIndex={activeIndex}
         years={{ from: activePeriod.yearFrom, to: activePeriod.yearTo }}
+        setActiveIndex={handleChangeIndex}
       />
 
       <div className={cn(styles.events)}>
-        <div className={styles.eventsWrapper}>
-          <EventsSlider items={activePeriod.events} />
-        </div>
+        <EventsSlider items={activePeriod.events} />
       </div>
 
       <CircleActions
         activeIndex={activeIndex}
         itemsLength={circleItems.length}
         className={styles.circleActions}
+        onChangeIndex={handleChangeIndex}
       />
     </section>
   );
