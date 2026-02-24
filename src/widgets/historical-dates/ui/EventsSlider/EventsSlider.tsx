@@ -9,6 +9,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import { useEffect, useRef, useState } from "react";
 import { useGSAP, gsap } from "@/shared/lib";
 import { ANIMATION_DURATION } from "../../model/animations";
+import SwiperCore from "swiper";
 
 interface EventsSliderProps {
   items: HistoricalPeriodEvent[];
@@ -19,6 +20,8 @@ export function EventsSlider({ items }: EventsSliderProps) {
 
   const [visibleItems, setVisibleItems] = useState(items);
   const firstRenderRef = useRef(true);
+
+  const swiperRef = useRef<SwiperCore | null>(null);
 
   useEffect(() => {
     if (firstRenderRef.current) {
@@ -36,6 +39,12 @@ export function EventsSlider({ items }: EventsSliderProps) {
       duration: ANIMATION_DURATION / 2,
       onComplete: () => {
         setVisibleItems(items);
+
+        if (swiperRef.current) {
+          swiperRef.current.slideTo(0, 0);
+          swiperRef.current.update();
+          swiperRef.current.navigation?.update();
+        }
 
         gsap.to(el, {
           autoAlpha: 1,
@@ -63,6 +72,7 @@ export function EventsSlider({ items }: EventsSliderProps) {
       </IconButton>
 
       <Swiper
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
         className={styles.swiper}
         modules={[Navigation, Pagination]}
         navigation={{
