@@ -151,7 +151,17 @@
   height: 8px;
   border-radius: 50%;
   background: var(--dot-color);
+}
+
+.dotWrapper {
+  position: absolute;
+  width: 40px;
+  height: 40px;
   transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 // big dot

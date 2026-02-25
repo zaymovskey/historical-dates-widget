@@ -174,8 +174,10 @@ export function Circle({
                   style={style}
                   onClick={() => handleChangeIndex(i)}
                 >
-                  <div className={styles.animDot}>
-                    <div className={styles.dot} aria-hidden="true" />
+                  <div className={styles.dotWrapper}>
+                    <div className={styles.animDot}>
+                      <div className={styles.dot} aria-hidden="true" />
+                    </div>
                   </div>
 
                   <div className={styles.animActiveDot}>
