@@ -35,8 +35,25 @@
   pointer-events: none;
 }
 
+.periodLabel {
+  display: none;
+
+  @media (max-width: 768px) {
+    margin-right: var(--content-gutter);
+    display: block;
+    font-weight: 600;
+    border-bottom: 1px solid var(--color-gray-border);
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    font-size: 18px;
+  }
+}
+
 @media (max-width: 768px) {
   .swiper {
+    :global(.swiper-pagination) {
+      padding-right: var(--content-gutter);
+    }
     :global(.swiper-slide) {
       transition: opacity var(--transition-duration-default);
     }

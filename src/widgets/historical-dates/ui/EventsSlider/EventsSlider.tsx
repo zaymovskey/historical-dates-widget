@@ -13,12 +13,15 @@ import SwiperCore from "swiper";
 
 interface EventsSliderProps {
   items: HistoricalPeriodEvent[];
+  periodLabel?: string;
 }
 
-export function EventsSlider({ items }: EventsSliderProps) {
+export function EventsSlider({ items, periodLabel }: EventsSliderProps) {
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   const [visibleItems, setVisibleItems] = useState(items);
+  const [visiblePeriodLabel, setVisiblePeriodLabel] = useState(periodLabel);
+
   const firstRenderRef = useRef(true);
 
   const swiperRef = useRef<SwiperCore | null>(null);
@@ -39,6 +42,7 @@ export function EventsSlider({ items }: EventsSliderProps) {
       duration: ANIMATION_DURATION / 2,
       onComplete: () => {
         setVisibleItems(items);
+        setVisiblePeriodLabel(periodLabel);
 
         if (swiperRef.current) {
           swiperRef.current.slideTo(0, 0);
@@ -52,7 +56,7 @@ export function EventsSlider({ items }: EventsSliderProps) {
         });
       }
     });
-  }, [items]);
+  }, [items, periodLabel]);
 
   useGSAP(() => {
     const el = rootRef.current;
@@ -62,6 +66,7 @@ export function EventsSlider({ items }: EventsSliderProps) {
 
   return (
     <div ref={rootRef} className={styles.root}>
+      <div className={styles.periodLabel}>{visiblePeriodLabel}</div>
       <IconButton
         className={styles.prev}
         size={40}
