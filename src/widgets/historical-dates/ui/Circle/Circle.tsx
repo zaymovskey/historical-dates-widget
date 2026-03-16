@@ -31,14 +31,17 @@ const getPositionsDelta = (from: number, to: number, total: number) => {
   let delta = to - from;
 
   if (delta > total / 2) {
+    // Слишком большой положительный переход, лучше повернуть наоборот
     delta -= total;
   }
   if (delta < -total / 2) {
+    // Слишком большой отрицательный переход, лучше повернуть наоборот
     delta += total;
   }
 
   if (Math.abs(delta) === total / 2) {
-    delta = total / 2;
+    // Равные по величине переходы в обе стороны, можно выбрать любой. Выберем положительный.
+    delta = -total / 2;
   }
   return delta;
 };
