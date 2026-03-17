@@ -1,13 +1,18 @@
 import styles from "./HistoricalDates.module.scss";
 import "swiper/css";
-import { historicalPeriods } from "../model/data";
+
 import { CircleItem, Circle } from "./Circle/Circle";
 import { EventsSlider } from "./EventsSlider/EventsSlider";
 import { useState } from "react";
 import { cn } from "@/shared/lib";
 import { CircleActions } from "./Circle/CircleActions/CircleActions";
+import { type HistoricalPeriod } from "../model/types";
 
-export function HistoricalDates() {
+interface HistoricalDatesProps {
+  historicalPeriods: HistoricalPeriod[];
+}
+
+export function HistoricalDates({ historicalPeriods }: HistoricalDatesProps) {
   const circleItems: CircleItem[] = historicalPeriods.map((period) => ({
     id: period.id,
     label: period.label
