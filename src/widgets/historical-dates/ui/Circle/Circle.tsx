@@ -43,6 +43,8 @@ const getPositionsDelta = (from: number, to: number, total: number) => {
     // Равные по величине переходы в обе стороны, можно выбрать любой. Выберем положительный.
     delta = -total / 2;
   }
+
+  // Если ни одно из условий не сработало, delta уже содержит кратчайший переход
   return delta;
 };
 
