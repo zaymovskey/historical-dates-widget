@@ -31,9 +31,11 @@ https://historical-dates-widget.vercel.app
 
 ---
 
-## 🖼 Demo
+## 📱 Responsive
 
 ![Demo](./screenshots/demo.gif)
+
+![Demo](./screenshots/demo-mobile.gif)
 
 ---
 
